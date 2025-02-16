@@ -37,11 +37,12 @@ public class Operations {
         }catch(InputMismatchException e){
             System.out.println("Please enter a valid option!");
             startApplication();
-        }catch(NoSuchElementException e){
-            System.out.println("No input availabele");
-        }catch(IllegalStateException e){
-            System.out.println("Scanner is closed");
         }
+//        catch(NoSuchElementException e){
+//            System.out.println("No input availabele");
+//        }catch(IllegalStateException e){
+//            System.out.println("Scanner is closed");
+//        }
     }
 
     public static void createUser(){
