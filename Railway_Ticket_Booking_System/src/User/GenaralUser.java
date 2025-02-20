@@ -30,9 +30,8 @@ public class GenaralUser implements User{
         //try to hash it. now storing without hashing
         System.out.println("enter your password");
         setgUserPassword(scanner.nextLine());
-        regUserDAO instan = regUserDAO.getInstance(this);
-
-
+        regUserDAO daoObj = regUserDAO.getInstance(this);
+        daoObj.register(this);
 
     }
 
