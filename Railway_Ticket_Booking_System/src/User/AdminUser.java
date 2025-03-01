@@ -1,7 +1,6 @@
 package User;
 
 import DAO.adminUserDAO;
-
 import java.util.Scanner;
 
 public class AdminUser implements User {
@@ -47,6 +46,7 @@ public class AdminUser implements User {
         setAdminPassword(scanner.nextLine());
         adminUserDAO dao = new adminUserDAO();
         dao.register(this);
+        System.out.println("user Registration Successfull");
     }
 
     public void modifyTrainDetails(){
