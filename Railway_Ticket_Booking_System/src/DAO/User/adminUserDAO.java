@@ -1,8 +1,7 @@
-package DAO;
+package DAO.User;
 
 import User.AdminUser;
 
-import java.lang.invoke.StringConcatFactory;
 import java.sql.*;
 
 public class adminUserDAO {

@@ -1,7 +1,7 @@
 package User;
 
 import java.util.Scanner;
-import DAO.regUserDAO;
+import DAO.User.regUserDAO;
 
 public class GenaralUser implements User{
     private String gUserName;

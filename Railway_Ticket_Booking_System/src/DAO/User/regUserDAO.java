@@ -1,9 +1,8 @@
-package DAO;
+package DAO.User;
 
 import User.GenaralUser;
 import java.sql.*;
 
-import java.time.temporal.Temporal;
 import java.util.Random;
 import java.util.function.Supplier;
 

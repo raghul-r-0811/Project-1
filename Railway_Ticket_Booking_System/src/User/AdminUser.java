@@ -1,6 +1,6 @@
 package User;
 
-import DAO.adminUserDAO;
+import DAO.User.adminUserDAO;
 import java.util.Scanner;
 
 public class AdminUser implements User {

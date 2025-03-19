@@ -1,4 +1,4 @@
-package DAO;
+package DAO.User;
 
 public interface UserDAO {
     void register();
