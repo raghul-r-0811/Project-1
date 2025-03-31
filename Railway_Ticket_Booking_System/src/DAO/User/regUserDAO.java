@@ -12,16 +12,17 @@ public class regUserDAO {
     public static final String PASSWORD = "081101";
 
     private static regUserDAO temp;
-    private GenaralUser gUser;
+    //private GenaralUser gUser;
 
-    private regUserDAO(GenaralUser gu){
+    // singleton for DAO object
+    private regUserDAO(){
         //using singleton
-        this.gUser = gu;
+        //this.gUser = gu;
     }
 
-    public static regUserDAO getInstance(GenaralUser gu){
+    public static regUserDAO getInstance(){
         if (temp == null) {
-            temp = new regUserDAO(gu);
+            temp = new regUserDAO();
         }
         return temp;
     }

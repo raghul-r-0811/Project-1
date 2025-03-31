@@ -1,0 +1,11 @@
+Used Factory method to instantiate different types of train(Passenger and Goods Train)
+Used Builder Design Pattern for the assembling the train like adding compartments to the train and adding seats to the compartment.
+
+
+Builder:
+	• Client - Main/ operation class
+	• Product  - package TrainPackage.Train.Train_Pack.Passenger_Train;
+	• Builder Interface - package TrainPackage.Train.Train_Pack.Builder.Train_Builder;
+	• Concrete Builders -  package TrainPackage.Train.Train_Pack.Builder.Passenger/GoodsTrain_Builder
+	• Director(Optional) - Not yet
+

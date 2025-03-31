@@ -1,4 +1,4 @@
-package TrainPackage.Passenger.Train_Pack;
+package TrainPackage.Train.Train_Pack;
 
 public class GoodsTrain implements Train {
     @Override

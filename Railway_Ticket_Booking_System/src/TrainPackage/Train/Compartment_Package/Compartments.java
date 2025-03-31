@@ -1,4 +1,4 @@
-package TrainPackage.Passenger.Compartment_Package;
+package TrainPackage.Train.Compartment_Package;
 
 public class Compartments{
     //

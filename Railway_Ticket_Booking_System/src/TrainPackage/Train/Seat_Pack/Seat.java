@@ -1,4 +1,4 @@
-package TrainPackage.Passenger.Seat_Pack;
+package TrainPackage.Train.Seat_Pack;
 
 enum SeatStatus{
     AVAILABLE,

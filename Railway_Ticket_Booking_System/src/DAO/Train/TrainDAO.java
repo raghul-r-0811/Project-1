@@ -1,7 +1,8 @@
 package DAO.Train;
 
-import TrainPackage.Passenger.Train_Pack.Train;
+
+import TrainPackage.Train.Train_Pack.Train;
 
 public interface TrainDAO {
-    void registerTrain(Train train);
+    String registerTrain(String train_name,String starting_point, String destination);
 }
