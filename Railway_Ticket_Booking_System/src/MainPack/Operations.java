@@ -32,6 +32,7 @@ public class Operations {
             switch (choice) {
                 case 1:
                     //login details
+                    createTrain();
                     break;
                 case 2:
                     //Registering
@@ -98,7 +99,7 @@ public class Operations {
         Train current_train = builder.build();
         // go to addCompartments start the work for adding compartments into
         System.out.println("going to add compartments for the train name :"+name+" with id: "+current_train.getTrain_id());
-        builder.addCompartments(current_train.getTrain_id());
+       // builder.addCompartments(current_train.getTrain_id());
 
 
     }

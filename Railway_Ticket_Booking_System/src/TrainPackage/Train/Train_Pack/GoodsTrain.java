@@ -5,4 +5,9 @@ public class GoodsTrain implements Train {
     public void registerTrain() {
 
     }
+
+    @Override
+    public String getTrain_id() {
+        return "";
+    }
 }

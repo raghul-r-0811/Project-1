@@ -44,7 +44,8 @@ public class PassengerTrain_Builder implements Train_Builder{
 
     @Override
     public Train_Builder setDestination(String destination) {
-        return null;
+        this.destination = destination;
+        return this;
     }
 
     public String getTrain_id() {
@@ -72,7 +73,10 @@ public class PassengerTrain_Builder implements Train_Builder{
 
         //call dao with the availabel data and generate id and get the id here and then call the actual Passenger Train class's constructor here.
         PassengerTrain_DAO passengerTrain_dao =  PassengerTrain_DAO.getInstance();
+
+        System.out.println("checking destination = "+destination);
         this.train_id = passengerTrain_dao.registerTrain(this.name,this.starting_point,this.destination);
+        System.out.println("did i  get the id");
         return new Passenger_Train(this);
     }
 }
