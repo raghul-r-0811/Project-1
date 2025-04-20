@@ -10,6 +10,6 @@ public interface Train_Builder {
     Train_Builder setStartingPoint(String start);
     Train_Builder setDestination(String destination);
     Train_Builder setCompartments(Map<Compartment_type,Integer> compartments); // just for storing the info about the compartments
-    Train_Builder addCompartments(String train_id); // the actual fuction where adding compartments into DB will start
+    void addCompartments(String train_id); // the actual fuction where adding compartments into DB will start
     Train build();
 }

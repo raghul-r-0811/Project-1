@@ -9,12 +9,6 @@ public class PassengerTrain_DAO implements TrainDAO{
     public static final String URL = "jdbc:mysql://localhost:3306/p1_train";
     public static final String USER = "root";
     public static final String PASSWORD = "081101";
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
     private static PassengerTrain_DAO temp;
 
     //constructor
@@ -102,6 +96,8 @@ public class PassengerTrain_DAO implements TrainDAO{
     }
 
 }
+
+//   Trigger used to generate train id
 //            DROP TRIGGER IF EXISTS generate_trainID;
 //            DELIMITER //
 //
@@ -111,7 +107,7 @@ public class PassengerTrain_DAO implements TrainDAO{
 //                    BEGIN
 //            DECLARE random_num INT;
 //            SET random_num = FLOOR(10000 + (RAND() * 90000));
-//            SET NEW.TrainID = CONCAT(LEFTqq(NEW.Train_Name, 3), random_num);
+//            SET NEW.TrainID = CONCAT(LEFT(NEW.Train_Name, 3), random_num);
 //            END;
 //            //
 //

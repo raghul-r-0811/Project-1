@@ -87,10 +87,11 @@ public class Operations {
         // add logic for  customizable train while expanding the application
 
         HashMap<Compartment_type,Integer> compartments = new HashMap<>();
-        compartments.put(Compartment_type.GENERAL,2);
+        compartments.put(Compartment_type.GENERAL,1);
         compartments.put(Compartment_type.SLEEPER,5);
         compartments.put(Compartment_type.AC,5);
         compartments.put(Compartment_type.TwoS,5);
+        compartments.put(Compartment_type.GENERAL,1);
         Train_Builder builder = new PassengerTrain_Builder();
         builder.setTrainName(name);
         builder.setStartingPoint(starting_point);
@@ -99,7 +100,11 @@ public class Operations {
         Train current_train = builder.build();
         // go to addCompartments start the work for adding compartments into
         System.out.println("going to add compartments for the train name :"+name+" with id: "+current_train.getTrain_id());
-       // builder.addCompartments(current_train.getTrain_id());
+        if(current_train.getTrain_id() != null){
+            builder.addCompartments(current_train.getTrain_id());
+        }else{
+            System.err.println("train id is null");
+        }
 
 
     }
