@@ -1,12 +1,12 @@
 package MainPack;
 
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 import DAO.Train.TrainDAO;
+import DAO.Train.updateTrain;
 import TrainPackage.Train.Compartment_Package.Compartment_type;
+import TrainPackage.Train.Routes.trainStops;
+import TrainPackage.Train.Ticket.TrainTicket;
 import TrainPackage.Train.Train_Pack.Builder.PassengerTrain_Builder;
 import TrainPackage.Train.Train_Pack.Builder.Train_Builder;
 import TrainPackage.Train.Train_Pack.Train;
@@ -14,7 +14,8 @@ import TrainPackage.Train.Train_Pack.Train;
 import User.*;
 
 import javax.security.auth.login.CredentialException;
-
+// options for Admin user after login. Create train. Add routes. Update Profile
+//options for General user -book ticket.View train.Update Profile.
 public class Operations {
     public static final Scanner scanner = new Scanner(System.in);
     public Operations() {
@@ -32,7 +33,8 @@ public class Operations {
             switch (choice) {
                 case 1:
                     //login details
-                    createTrain();
+                    TrainTicket trainTicket = new TrainTicket();
+                    trainTicket.checkTrainAvalibility();
                     break;
                 case 2:
                     //Registering
@@ -53,7 +55,9 @@ public class Operations {
             System.out.println("Scanner is closed");
         }
     }
+    public static void login(){
 
+    }
     public static void createUser(){
         System.out.println("Admin or general to create the type of account");
         Scanner scanner = new Scanner(System.in);
@@ -105,7 +109,47 @@ public class Operations {
         }else{
             System.err.println("train id is null");
         }
+    }
 
+    public static void addRoutes(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Adding routes to a train:");
+        System.out.println("Enter TrainID :");
+        String trainID = scanner.nextLine();
+        int count = 1;
+        List<trainStops> stopsList = new ArrayList<>();
+        // use this method to add routes in code
+        /*String[] stops = {"Chennai Central", "Tambaram", "Chengalpattu Junction", "Villupuram Junction",
+                "Tiruppadirippuliyur", "Cuddalore Port Junction", "Chidambaram",
+                "Mayiladuthurai Junction", "Kumbakonam", "Thanjavur Junction",
+                "Tiruchirappalli Junction", "Dindigul Junction", "Madurai Junction",
+                "Virudhunagar Junction", "Tirunelveli Junction"};
+
+
+        for(String s : stops ){
+            trainStops temp = new trainStops(s,count);
+            stopsList.add(temp);
+            count++;
+        }*/
+        while(count <= 20){
+            System.out.println("Enter name of Stop "+count);
+            String stopName = scanner.nextLine();
+            if(stopName.equals("exit")){
+                count--;
+                System.out.println("stopping with only "+count+" stops");
+                break;
+            }
+            trainStops temp = new trainStops(stopName,count);
+            stopsList.add(temp);
+            count++;
+        }
+
+        updateTrain updateTrain = new updateTrain();
+        if(updateTrain.addRoute(trainID,stopsList)){
+            System.out.println("Successfully added the stops to the Train with ID "+ trainID);
+        }else{
+            System.err.println("something wrong with adding the stops");
+        }
 
     }
 
