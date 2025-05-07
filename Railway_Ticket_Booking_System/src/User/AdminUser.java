@@ -26,8 +26,9 @@ public class AdminUser implements User {
     }
 
     @Override
-    public void login() {
+    public User login() {
 
+        return null;
     }
 
     @Override

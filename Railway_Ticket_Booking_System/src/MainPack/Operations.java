@@ -12,6 +12,7 @@ import TrainPackage.Train.Train_Pack.Builder.Train_Builder;
 import TrainPackage.Train.Train_Pack.Train;
 //import TrainPackage.Train.Train_Pack.Train_Factory;
 import User.*;
+import jdk.dynalink.Operation;
 
 import javax.security.auth.login.CredentialException;
 // options for Admin user after login. Create train. Add routes. Update Profile
@@ -31,15 +32,16 @@ public class Operations {
         try{
             int choice = scanner.nextInt();
             switch (choice) {
-                case 1:
+                case 1:{
                     //login details
-                    TrainTicket trainTicket = new TrainTicket();
-                    trainTicket.checkTrainAvalibility();
+                    login();
                     break;
+                }
                 case 2:
                     //Registering
                     // implementing factory method for creating regular user and Admin user
                     createUser();
+                    startApplication();
                     break;
                 default:
                     System.out.println("Invalid choice press either 1 or 2");
@@ -55,7 +57,75 @@ public class Operations {
             System.out.println("Scanner is closed");
         }
     }
-    public static void login(){
+    public static User login(){
+        int userType;
+        while (true) {
+            System.out.println("Press 1 to login into Admin account or 2 for General account");
+            try {
+                userType = scanner.nextInt();
+                if (userType == 1 || userType == 2) {
+                    break; // valid input, exit loop
+                } else {
+                    System.out.println("Invalid input. Please enter 1 or 2.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next(); // clear invalid input
+            }
+        }
+        GenaralUser currentUser;
+        if(userType == 1){
+            AdminUser user = new AdminUser();
+            // here directly calling functions copy login flow from else(GeneralUser)
+            System.out.println("Welcome Admin@123");
+            int operation;
+            while(true){
+                System.out.println("Available operations:\n     1.Add a new train.\n     2.Add routes to a train.\n     3.Exit application");
+                System.out.println("Enter the corresponding number for each operation");
+                try{
+                    operation = scanner.nextInt();
+                    if(operation == 1 || operation == 2 || operation == 3){
+                        if(operation == 1){
+                            createTrain();
+                        }else if(operation == 2){
+                            addRoutes();
+                        }
+                        break;
+                    }else{
+                        System.out.println("Please enter valid operation");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("Input Type mismatch please enter 1,2,3 accordingly");
+                }
+            }
+
+        }else{
+            currentUser = new GenaralUser();
+            currentUser.login();
+            //Add whatever operation and just call the function accordingly
+            int operation;
+            while(true){
+                System.out.println("Available operations:\n     1.Check Train Availability.     2.Book Train Ticket.");
+                System.out.println("Enter the corresponding number for each operation");
+                try{
+                    operation = scanner.nextInt();
+                    if(operation == 1 || operation == 2 ){
+                        break;
+                    }else{
+                        System.out.println("Please enter valid operation");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("Input Type mismatch please enter 1,2,3 accordingly");
+                }
+            }
+            TrainTicket trainTicket =  new TrainTicket();
+            if(operation == 1){
+                trainTicket.checkTrainAvalibility(currentUser);
+            }else{
+                trainTicket.bookTicket(currentUser);
+            }
+        }
+        return null;
 
     }
     public static void createUser(){
@@ -79,6 +149,7 @@ public class Operations {
 
         // still havent added code where this function is called.
         System.out.println("Enter Name for Train :");
+        scanner.nextLine();
         String name = scanner.nextLine();
         System.out.println("Starting point of the train");
         String starting_point = scanner.nextLine();
@@ -133,6 +204,7 @@ public class Operations {
         }*/
         while(count <= 20){
             System.out.println("Enter name of Stop "+count);
+            System.out.println("Maximum 20 stops. If want to stop it before 20 type \"exit\" all small");
             String stopName = scanner.nextLine();
             if(stopName.equals("exit")){
                 count--;

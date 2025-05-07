@@ -16,9 +16,113 @@ public class TrainTicket {
     String trainID;
     String trainName;
     int seatNo;
+    String compartmentName;
     String coachType;
 
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getTicket_No() {
+        return ticket_No;
+    }
+
+    public void setTicket_No(String ticket_No) {
+        this.ticket_No = ticket_No;
+    }
+
+    public String getTrainID() {
+        return trainID;
+    }
+
+    public void setTrainID(String trainID) {
+        this.trainID = trainID;
+    }
+
+    public String getTrainName() {
+        return trainName;
+    }
+
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
+    }
+
+    public int getSeatNo() {
+        return seatNo;
+    }
+
+    public void setSeatNo(int seatNo) {
+        this.seatNo = seatNo;
+    }
+
+    public String getCompartmentName() {
+        return compartmentName;
+    }
+
+    public void setCompartmentName(String compartmentName) {
+        this.compartmentName = compartmentName;
+    }
+
+    public String getCoachType() {
+        return coachType;
+    }
+
+    public void setCoachType(String coachType) {
+        this.coachType = coachType;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "TrainTicket{" +
+                "ticket_No='" + ticket_No + '\'' +
+                "userName='" + userName + '\'' +
+                ", userId='" + userId + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+
+                ", trainID='" + trainID + '\'' +
+                ", trainName='" + trainName + '\'' +
+                ", seatNo=" + seatNo +
+                ", compartmentName='" + compartmentName + '\'' +
+                ", coachType='" + coachType + '\'' +
+                '}';
+    }
+
     public void bookTicket(GenaralUser user){
+        //System.out.println("booking successfull");
+
         this.userId = user.getgUserid();
         this.userName = user.getgUserName();
         Scanner scanner = new Scanner(System.in);
@@ -41,6 +145,12 @@ public class TrainTicket {
         }
         TicketDAO ticketDAO = new TicketDAO();
         boolean ticketBooked =ticketDAO.bookTicket(this);
+        if(ticketBooked){
+            System.out.println("Ticket Booked Successfully");
+            String printTicket = toString();
+            System.out.println(printTicket);
+        }
+
     }
 
     public void checkTrainAvalibility(GenaralUser user){
@@ -67,6 +177,8 @@ public class TrainTicket {
         if(choice == 1){
             bookTicket(user);
         }
+
     }
+
 
 }
